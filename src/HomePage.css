@@ -1,0 +1,41 @@
+/* HomePage.css */
+.homepage {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.dining-hall-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.dining-hall-item {
+  background-color: #ffd700;
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 80%;
+  max-width: 400px;
+}
+
+.dining-hall-item:hover {
+  background-color: #ffdf4d;
+}
+
+.rating {
+  margin-top: 10px;
+}
+
+.star {
+  color: #fff;
+  font-size: 24px;
+}
+
+.star.filled {
+  color: #1e3c72;
+}
