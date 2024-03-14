@@ -1,10 +1,10 @@
-// HomePage.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const serverName = "http://localhost:5000"; // change based on if testing locally or deploying
   const [diningHalls, setDiningHalls] = useState([
     { id: 1, name: 'College Nine/John R. Lewis', rating: 0 },
     { id: 2, name: 'Cowell/Stevenson', rating: 0 },
@@ -21,7 +21,7 @@ const HomePage = () => {
     try {
       const updatedDiningHalls = await Promise.all(
         diningHalls.map(async (diningHall) => {
-          const response = await fetch(`http://localhost:5000/api/ratings/${diningHall.id}`);
+          const response = await fetch(serverName + `/api/ratings/${diningHall.id}`);
           const ratings = await response.json();
           const totalRating = ratings.reduce((sum, rating) => sum + rating.rating, 0);
           const averageRating = ratings.length > 0 ? totalRating / ratings.length : 0;

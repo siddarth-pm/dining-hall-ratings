@@ -1,4 +1,3 @@
-// RatingPage.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './RatingPage.css';
@@ -9,14 +8,15 @@ const RatingPage = () => {
   const [reviewRating, setReviewRating] = useState(0);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
+  const serverName = "http://localhost:5000"; // change based on if testing locally or deploying
 
-  const idToName = new Map([
+  const idToName = new Map([ 
     [1, 'College Nine/John R. Lewis'],
     [2, 'Cowell/Stevenson'],
     [3, 'Crown/Merrill'],
     [4, 'Porter/Kresge'],
     [5, 'Rachel Carson/Oakes']
-  ]);
+  ]); // maps numerical id to dining hall name
 
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const RatingPage = () => {
 
   const deleteAllRatings = async () => {
     try {
-      await fetch('http://localhost:5000/api/ratings', {
+      await fetch(serverName + '/api/ratings', {
         method: 'DELETE',
       });
       fetchReviews();
@@ -36,7 +36,7 @@ const RatingPage = () => {
 
   const fetchReviews = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/ratings/${id}`);
+      const response = await fetch(serverName + `/api/ratings/${id}`);
       if (!response.ok) {
         throw new Error('Error fetching reviews');
       }
@@ -44,8 +44,6 @@ const RatingPage = () => {
       setReviews(data);
     } catch (error) {
       console.error('Error fetching reviews:', error.message);
-      // Log the error stack trace for more details
-      console.error('Error stack trace:', error.stack);
     }
   };
 
@@ -70,7 +68,7 @@ const RatingPage = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/ratings', {
+      const response = await fetch(serverName + '/api/ratings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

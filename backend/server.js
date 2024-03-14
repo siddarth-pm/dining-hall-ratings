@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -31,9 +30,9 @@ const Rating = mongoose.model('Rating', ratingSchema);
 
 // Middleware
 app.use(express.json());
-app.use(cors({
-  origin: 'http://localhost:3000',
-}));
+app.use(cors());
+
+// { origin: 'http://localhost:3000', } used to be in the app.use(cors()) but just made it so all can communicate
 
 // Delete entries at given times
 cron.schedule('30 11 * * *', async () => {

@@ -1,8 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "DHall App",
+  "name": "DHall React App",
   "icons": [
-    
   ],
   "start_url": ".",
   "display": "standalone",
